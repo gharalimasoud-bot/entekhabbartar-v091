@@ -13,7 +13,10 @@ async function api(path, method = "GET", body = null) {
         options.body = JSON.stringify(body);
     }
 
-    const response = await fetch(url, options);
+    const response = await fetch(url, {
+    ...options,
+    mode: "cors"
+});
 
     return await response.json();
 
