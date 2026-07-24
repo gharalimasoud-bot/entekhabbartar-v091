@@ -1,22 +1,20 @@
 console.log("API FILE LOADED");
+
 async function api(path, method = "GET", body = null) {
 
-    let url = CONFIG.API_URL + "?path=" + path;
+    let url = CONFIG.API_URL + "?path=" + encodeURIComponent(path);
 
-    const options = {
-        method,
-        headers: {}
-    };
+    if (method === "GET") {
 
-    if (body) {
-        options.headers["Content-Type"] = "application/json";
-        options.body = JSON.stringify(body);
+        const response = await fetch(url);
+        return await response.json();
+
     }
 
     const response = await fetch(url, {
-    ...options,
-    mode: "cors"
-});
+        method: "POST",
+        body: JSON.stringify(body || {})
+    });
 
     return await response.json();
 
