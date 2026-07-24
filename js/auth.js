@@ -1,15 +1,13 @@
 console.log("AUTH FILE LOADED");
-async function login(){
 
-    const username =
-        document.getElementById("username").value.trim();
+async function login() {
 
-    const password =
-        document.getElementById("password").value;
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value;
 
     document.getElementById("loginError").textContent = "";
 
-    try{
+    try {
 
         const result = await api(
             "login",
@@ -20,26 +18,54 @@ async function login(){
             }
         );
 
-        console.log(result);
+        console.log("LOGIN RESULT:");
+console.log(result);
 
         if (result.ok) {
 
-        localStorage.setItem("loggedIn", "true");
-        console.log(localStorage.getItem("loggedIn"));
+            localStorage.setItem("loggedIn", "true");
 
-         console.log(result);
+            if (result.result) {
+
+                localStorage.setItem(
+                    "displayName",
+                    result.result.displayName || username
+                );
+
+                localStorage.setItem(
+                    "username",
+                    result.result.username || username
+                );
+
+                localStorage.setItem(
+                    "isAdmin",
+                    String(result.result.isAdmin)
+                );
+
+                const welcome =
+                    document.getElementById("welcomeUser");
+
+                if (welcome) {
+
+                    welcome.textContent =
+                        "خوش آمدید " +
+                        (result.result.displayName || username);
+
+                }
+
+            }
 
             document.getElementById("loginPage").style.display = "none";
             document.getElementById("dashboard").style.display = "block";
 
-        }else{
+        } else {
 
             document.getElementById("loginError").textContent =
-                result.error || "خطا در ورود";
+                result.error || "نام کاربری یا رمز عبور اشتباه است.";
 
         }
 
-    }catch(err){
+    } catch (err) {
 
         console.error(err);
 
@@ -49,16 +75,19 @@ async function login(){
     }
 
 }
+
 function logout() {
 
     localStorage.removeItem("loggedIn");
+    localStorage.removeItem("displayName");
+    localStorage.removeItem("username");
+    localStorage.removeItem("isAdmin");
 
     document.getElementById("dashboard").style.display = "none";
-
     document.getElementById("loginPage").style.display = "block";
 
     document.getElementById("username").value = "";
-
     document.getElementById("password").value = "";
+    document.getElementById("loginError").textContent = "";
 
 }
