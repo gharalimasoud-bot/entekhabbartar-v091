@@ -26,7 +26,7 @@ async function login(){
 
          console.log(result);
 
-            alert("ورود موفق");
+            document.getElementById("loginPage").style.display = "none";
 
         }else{
 
