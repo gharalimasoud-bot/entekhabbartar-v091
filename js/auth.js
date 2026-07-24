@@ -28,8 +28,6 @@ async function login(){
 
             alert("ورود موفق");
 
-}
-
         }else{
 
             document.getElementById("loginError").textContent =
