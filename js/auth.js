@@ -46,3 +46,14 @@ document.getElementById("dashboard").style.display = "block";
     }
 
 }
+function logout() {
+
+    document.getElementById("dashboard").style.display = "none";
+
+    document.getElementById("loginPage").style.display = "block";
+
+    document.getElementById("username").value = "";
+
+    document.getElementById("password").value = "";
+
+}
