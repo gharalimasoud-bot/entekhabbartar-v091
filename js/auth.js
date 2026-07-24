@@ -22,9 +22,13 @@ async function login(){
 
         console.log(result);
 
-        if(result.ok){
+        if (result.ok) {
+
+         console.log(result);
 
             alert("ورود موفق");
+
+}
 
         }else{
 
