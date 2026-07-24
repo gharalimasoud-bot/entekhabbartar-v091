@@ -24,10 +24,13 @@ async function login(){
 
         if (result.ok) {
 
+        localStorage.setItem("loggedIn", "true");
+        console.log(localStorage.getItem("loggedIn"));
+
          console.log(result);
 
             document.getElementById("loginPage").style.display = "none";
-document.getElementById("dashboard").style.display = "block";
+            document.getElementById("dashboard").style.display = "block";
 
         }else{
 
@@ -47,6 +50,8 @@ document.getElementById("dashboard").style.display = "block";
 
 }
 function logout() {
+
+    localStorage.removeItem("loggedIn");
 
     document.getElementById("dashboard").style.display = "none";
 
