@@ -27,6 +27,7 @@ async function login(){
          console.log(result);
 
             document.getElementById("loginPage").style.display = "none";
+document.getElementById("dashboard").style.display = "block";
 
         }else{
 
