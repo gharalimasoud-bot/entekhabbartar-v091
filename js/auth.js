@@ -19,7 +19,7 @@ async function login() {
         );
 
         console.log("LOGIN RESULT:");
-console.log(result);
+        console.log(result);
 
         if (result.ok) {
 
