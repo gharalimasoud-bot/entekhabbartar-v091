@@ -1,7 +1,5 @@
 console.log("App Started");
 
-loadListings();
-
 window.onload = function () {
 
     const loggedIn =
